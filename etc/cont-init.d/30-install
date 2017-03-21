@@ -4,6 +4,8 @@
 mkdir -p \
 	/app/fhem
 
+echo $TZ > /etc/timezone
+
 # install app
 if [ ! -e /app/fhem/fhem.cfg ]; then
 #  wget -O /tmp/fhem.tgz http://www.dhs-computertechnik.de/downloads/fhem-cvs.tgz 

@@ -1,4 +1,50 @@
 FROM lsiobase/alpine
+LABEL maintainer sticilface <amelvin@gmail.com>
+LABEL org.freenas.interactive="false" 		\
+      org.freenas.version="3.8.006"		\
+      org.freenas.upgradeable="true"		\
+      org.freenas.expose-ports-at-host="true"	\
+      org.freenas.autostart="true"		\
+      org.freenas.capabilities-add="NET_BROADCAST" \
+      org.freenas.web-ui-protocol="http"	\
+      org.freenas.web-ui-port=8083		\
+      org.freenas.web-ui-path="fhem"		\
+      org.freenas.port-mappings="8083:8083/tcp,8084:8084/tcp,8085:8085/tcp"			\
+      org.freenas.volumes="[							\
+          {												\
+              \"name\": \"/app/fhem\",					\
+              \"descr\": \"Storage space\",				\
+              \"optional\": true						\
+          }												\
+      ]"												\
+      org.freenas.settings="[ 							\
+          {												\
+              \"env\": \"TZ\",							\
+              \"descr\": \"Timezone eg Europe/London\",	\
+              \"optional\": true						\
+          },											\
+          {												\
+              \"env\": \"ADVERTISE_IP\",				\
+              \"descr\": \"http://<hostIPAddress>:8083/fhem\",	\
+              \"optional\": true						\
+          },											\
+          {												\
+              \"env\": \"ALLOWED_NETWORKS\",			\
+              \"descr\": \"IP/mask[,IP/mask]\",			\
+              \"optional\": true						\
+          },											\
+          {												\
+              \"env\": \"PUID\",					\
+              \"descr\": \"Fhem User ID\",				\
+              \"optional\": true						\
+          },											\
+          {												\
+              \"env\": \"PGID\",					\
+              \"descr\": \"Fhem Group ID\",				\
+              \"optional\": true						\
+          }  											\
+       ]"
+
 
 RUN apk add --no-cache --update \
 	wget  						\
@@ -33,4 +79,5 @@ COPY ./etc /etc
 
 VOLUME /app/fhem
 
-# CMD ["perl","/app/fhem/fhem.pl", "/app/fhem/fhem.cfg"]
+CMD ["bash"]
+
