@@ -1,0 +1,22 @@
+#!/usr/bin/with-contenv bash
+
+# create folders
+mkdir -p \
+	/app/fhem
+
+# install app
+if [ ! -e /app/fhem/fhem.cfg ]; then
+#  wget -O /tmp/fhem.tgz http://www.dhs-computertechnik.de/downloads/fhem-cvs.tgz 
+  echo "Downloading FHEM"
+  cd /app 
+  tar xzf /usr/local/fhem.tgz
+  mv /app/fhem/fhem.cfg /app/fhem/fhem.cfg.orig
+  mv /app/fhem/fhem.cfg.demo /app/fhem/fhem.cfg
+# permissions
+  chown -R abc:abc \
+	/app/fhem
+fi
+
+
+
+
