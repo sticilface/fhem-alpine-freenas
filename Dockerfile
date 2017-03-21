@@ -1,7 +1,7 @@
 FROM lsiobase/alpine
 LABEL maintainer sticilface <amelvin@gmail.com>
 LABEL org.freenas.interactive="false" 		\
-      org.freenas.version="3.8.006"		\
+      org.freenas.version="3.8.007"		\
       org.freenas.upgradeable="true"		\
       org.freenas.expose-ports-at-host="true"	\
       org.freenas.autostart="true"		\
@@ -63,6 +63,7 @@ RUN apk add --no-cache --update \
 RUN mkdir -p /usr/src/perl
 
 ADD https://raw.githubusercontent.com/miyagawa/cpanminus/master/cpanm /usr/src/perl
+ADD http://www.dhs-computertechnik.de/downloads/fhem-cvs.tgz /usr/local/fhem.tgz
 
 RUN buildDeps='gcc build-base make' \
 	&& cd /usr/src/perl \
