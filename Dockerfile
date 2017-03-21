@@ -29,8 +29,6 @@ RUN cpanm Net::MQTT::Simple  \
 	Net::MQTT::Constants \
 	Net::Bonjour
 
-COPY ./src/fhem-cvs.tgz /usr/local/fhem.tgz
-
 COPY ./etc /etc
 
 VOLUME /app/fhem
