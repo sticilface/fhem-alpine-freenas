@@ -24,16 +24,6 @@ RUN buildDeps='gcc build-base make' \
     && chmod +x cpanm \
     && ./cpanm App::cpanminus \
     && rm -fr ./cpanm /root/.cpanm /usr/src/perl 
- #    && cpanm Net::MQTT::Simple  Net::MQTT::Constants \
-	# && apk remove $buildDeps 
-
-# RUN export PERL_MM_USE_DEFAULT=1
-# RUN buildDeps='gcc build-base make' \
-#    && apk add --no-cache --update $buildDeps \
-#    && cpan install   	   \
-#       Net::MQTT::Simple   \
-#       Net::MQTT::Constants \
-#    && apk remove $buildDeps 
 
 RUN cpanm Net::MQTT::Simple  \
 	Net::MQTT::Constants \
