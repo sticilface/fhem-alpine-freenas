@@ -1,7 +1,7 @@
 FROM lsiobase/alpine
 LABEL maintainer sticilface <amelvin@gmail.com>
 LABEL org.freenas.interactive="false" 		\
-      org.freenas.version="3.8.007"		\
+      org.freenas.version="3.8.008"		\
       org.freenas.upgradeable="true"		\
       org.freenas.expose-ports-at-host="true"	\
       org.freenas.autostart="true"		\
@@ -34,17 +34,16 @@ LABEL org.freenas.interactive="false" 		\
               \"optional\": true						\
           },											\
           {												\
-              \"env\": \"PUID\",					\
+              \"env\": \"PUID\",						\
               \"descr\": \"Fhem User ID\",				\
               \"optional\": true						\
           },											\
           {												\
-              \"env\": \"PGID\",					\
+              \"env\": \"PGID\",						\
               \"descr\": \"Fhem Group ID\",				\
               \"optional\": true						\
           }  											\
        ]"
-
 
 RUN apk add --no-cache --update \
 	wget  						\
@@ -77,8 +76,7 @@ RUN cpanm Net::MQTT::Simple  \
 	Net::Bonjour
 
 COPY ./etc /etc
+ENV TZ Europe/London
 
 VOLUME /app/fhem
-
-CMD ["bash"]
 

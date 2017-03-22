@@ -6,10 +6,15 @@ mkdir -p \
 
 echo $TZ > /etc/timezone
 
+if [ -e /app/fhem/fhem.cfg ]; then
+	echo "Previous FHEM found"
+	exit 0
+fi
+
 # install app
 if [ ! -e /app/fhem/fhem.cfg ]; then
 #  wget -O /tmp/fhem.tgz http://www.dhs-computertechnik.de/downloads/fhem-cvs.tgz 
-  echo "Downloading FHEM"
+  echo "Installing FHEM"
   cd /app 
   tar xzf /usr/local/fhem.tgz
   mv /app/fhem/fhem.cfg /app/fhem/fhem.cfg.orig
